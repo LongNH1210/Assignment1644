@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/admin', async (req, res) => {
   const toys = await ToyModel.find({}).populate('category');
-  var total = await ToyModel.count();
+  var total = await ToyModel.countDocuments();
   res.render('Toy/admin', { toys: toys, total: total })
 })
 
@@ -21,19 +21,19 @@ router.get('/toylist', async (req, res) => {
 
 router.post('/search', async (req, res) => {
   var keyword = req.body.keyword;
-  var total = await ToyModel.count();
+  var total = await ToyModel.countDocuments();
   var toys = await ToyModel.find({ name: new RegExp(keyword, "i") })
   res.render('Toy/admin', { toys: toys, total: total  })
 })
 
  router.get('/admin/ascending', async (req, res) => {
-  var total = await ToyModel.count();
+  var total = await ToyModel.countDocuments();
   var toys = await ToyModel.find().sort({ price : 1})
   res.render('Toy/admin', { toys: toys, total: total  })
 })
 
 router.get('/admin/descending', async (req, res) => {
-  var total = await ToyModel.count();
+  var total = await ToyModel.countDocuments();
   var toys = await ToyModel.find().sort({ price : -1 })
   res.render('Toy/admin', { toys: toys, total: total  })
 })

@@ -14,7 +14,6 @@ var app = express();
 
 //Cấu hình mongoose
 var mongoose = require('mongoose');
-mongoose.set("strictQuery", false);
 var db = "mongodb+srv://longbestrengar:mminhmtp123@test.jpbnxcd.mongodb.net/Toy2";
 mongoose.connect(db)
 .then(() => {console.log("Connect to db ok!")})
